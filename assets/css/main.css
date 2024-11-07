@@ -344,7 +344,7 @@ a{
 }
 
 .cv-form-row-title{
-    background-color: var(--clr-dark);
+    background-color: var(--clr-blue);
     padding: 0.8rem 1.6rem;
     margin-bottom: 2rem;
 }
