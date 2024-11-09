@@ -1,5 +1,5 @@
-// regex for validation
-const strRegex =  /^[a-zA-Z\s]*$/; // containing only letters
+
+const strRegex =  /^[a-zA-Z\s]*$/; //  letters
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 /* supports following number formats - (123) 456-7890, (123)456-7890, 123-456-7890, 123.456.7890, 1234567890, +31636363634, 075-63546725 */
@@ -15,7 +15,7 @@ const validType = {
     ANY: 'any',
 }
 
-// user inputs elements
+
 let firstnameElem = mainForm.firstname,
     middlenameElem = mainForm.middlename,
     lastnameElem = mainForm.lastname,
@@ -26,7 +26,7 @@ let firstnameElem = mainForm.firstname,
     phonenoElem = mainForm.phoneno,
     summaryElem = mainForm.summary;
 
-// display elements
+
 let nameDsp = document.getElementById('fullname_dsp'),
     imageDsp = document.getElementById('image_dsp'),
     phonenoDsp = document.getElementById('phoneno_dsp'),
@@ -40,7 +40,7 @@ let nameDsp = document.getElementById('fullname_dsp'),
     educationsDsp = document.getElementById('educations_dsp'),
     experiencesDsp = document.getElementById('experiences_dsp');
 
-// first value is for the attributes and second one passes the nodelists
+
 const fetchValues = (attrs, ...nodeLists) => {
     let elemsAttrsCount = nodeLists.length;
     let elemsDataCount = nodeLists[0].length;
@@ -88,7 +88,7 @@ const getUserInputs = () => {
 
     let skillElem = document.querySelectorAll('.skill');
 
-    // event listeners for form validation
+ 
     firstnameElem.addEventListener('keyup', (e) => validateFormData(e.target, validType.TEXT, 'First Name'));
     middlenameElem.addEventListener('keyup', (e) => validateFormData(e.target, validType.TEXT_EMP, 'Middle Name'));
     lastnameElem.addEventListener('keyup', (e) => validateFormData(e.target, validType.TEXT, 'Last Name'));
@@ -134,48 +134,48 @@ const getUserInputs = () => {
 };
 
 function validateFormData(elem, elemType, elemName){
-    // checking for text string and non empty string
+  
     if(elemType == validType.TEXT){
         if(!strRegex.test(elem.value) || elem.value.trim().length == 0) addErrMsg(elem, elemName);
         else removeErrMsg(elem);
     }
 
-    // checking for only text string
+   
     if(elemType == validType.TEXT_EMP){
         if(!strRegex.test(elem.value)) addErrMsg(elem, elemName);
         else removeErrMsg(elem);
     }
 
-    // checking for email
+   
     if(elemType == validType.EMAIL){
         if(!emailRegex.test(elem.value) || elem.value.trim().length == 0) addErrMsg(elem, elemName);
         else removeErrMsg(elem);
     }
 
-    // checking for phone number
+  
     if(elemType == validType.PHONENO){
         if(!phoneRegex.test(elem.value) || elem.value.trim().length == 0) addErrMsg(elem, elemName);
         else removeErrMsg(elem);
     }
 
-    // checking for only empty
+   
     if(elemType == validType.ANY){
         if(elem.value.trim().length == 0) addErrMsg(elem, elemName);
         else removeErrMsg(elem);
     }
 }
 
-// adding the invalid text
+
 function addErrMsg(formElem, formElemName){
     formElem.nextElementSibling.innerHTML = `${formElemName} is invalid`;
 }
 
-// removing the invalid text 
+
 function removeErrMsg(formElem){
     formElem.nextElementSibling.innerHTML = "";
 }
 
-// show the list data
+
 const showListData = (listData, listContainer) => {
     listContainer.innerHTML = "";
     listData.forEach(listItem => {
@@ -207,7 +207,7 @@ const displayCV = (userData) => {
     showListData(userData.experiences, experiencesDsp);
 }
 
-// generate CV
+
 const generateCV = () => {
     let userData = getUserInputs();
     displayCV(userData);
@@ -222,7 +222,7 @@ function previewImage(){
     }
 }
 
-// print CV
+
 function printCV(){
     window.print();
 }
